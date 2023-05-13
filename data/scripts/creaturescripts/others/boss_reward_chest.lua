@@ -275,7 +275,7 @@ function loginBossPlayer.onLogin(player)
 	
 	return true
 end
---loginBossPlayer:register()
+loginBossPlayer:register()
 
 local logoutBossPlayer = CreatureEvent("LogoutBossPlayer")
 function logoutBossPlayer.onLogin(player)
@@ -294,4 +294,4 @@ function logoutBossPlayer.onLogin(player)
 	
 	return true
 end
---logoutBossPlayer:register()
+logoutBossPlayer:register()

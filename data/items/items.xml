@@ -28557,6 +28557,7 @@
 	<item id="19201" article="an" name="ornate door with a keyhole"/>
 	<item id="19202" article="a" name="reward container">
 		<attribute key="moveable" value="0"/>
+		<attribute key="description" value="Contains all loot of a Boss."/>
 		<attribute key="allowpickUpAble" value="0"/>
 		<attribute key="containersize" value="32"/>
 	</item>
@@ -28631,7 +28632,7 @@
 	</item>
 	<item id="19250" article="a" name="reward chest">
 		<attribute key="type" value="rewardchest" />
-		<attribute key="description" value="This chest contains your rewards earned in battles."/>
+		<attribute key="description" value="This chest contains your rewards earned in battles of the last 7 days."/>
 		<attribute key="moveable" value="0"/>
 		<attribute key="allowpickUpAble" value="0"/>
 		<attribute key="containersize" value="32"/>

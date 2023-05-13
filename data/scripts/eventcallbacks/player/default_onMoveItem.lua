@@ -141,27 +141,6 @@ event.onMoveItem = function(self, item, count, fromPosition, toPosition, fromCyl
 		end
 	end
 	
-	local containerTo = self:getContainerById(toPosition.y-64)
-	if (containerTo) then
-	-- Gold Pouch
-		if (containerTo:getId() == 23721) then
-			if (not (item:getId() == ITEM_CRYSTAL_COIN or item:getId() == ITEM_PLATINUM_COIN or item:getId() == ITEM_GOLD_COIN)) then
-				self:sendTextMessage(MESSAGE_INFO_DESCR, "You can move only money to this container.")
-				return false
-			end
-		end
-	local potions = {268, 237, 238, 266, 236, 239, 7643, 23375, 7642, 23374}
-	local runes = {2260, 2261, 2262, 2263, 2264, 2265, 2266, 2267, 2268, 2269, 2270, 2271, 2272, 2273, 2274, 2275, 2276, 2277, 2278, 2279, 2280, 2281, 2282, 2283, 2284, 2285, 2286, 2287, 2288, 2289, 2290, 2291, 2292, 2293, 2294, 2295, 2296, 2297, 2298, 2299, 2300, 2301, 2302, 2303, 2304, 2305, 2306, 2307, 2308, 2309, 2310, 2311, 2312, 2313, 2314, 2315, 2316}
-		--Supply Stash
-		if (containerTo:getId() == ITEM_SUPPLY_STASH) then
-		local itemType = item:getType()
-			if (not (itemType:getType() == SLOTP_BACKPACK or isInArray(runes, item:getId()) or isInArray(potions, item:getId()))) then
-				self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You can move only runes and potions in the Supply Stash.")
-				return false
-			end
-		end
-	end
-	
 	if toPosition.x == CONTAINER_POSITION then
 		local containerId = toPosition.y - 64
 		local container = self:getContainerById(containerId)		
@@ -191,7 +170,28 @@ event.onMoveItem = function(self, item, count, fromPosition, toPosition, fromCyl
 		self:sendCancelMessage('Sorry, not possible.')
 		return false
 	end
-
+	
+	local containerTo = self:getContainerById(toPosition.y-64)
+	if (containerTo) then
+	-- Gold Pouch
+		if (containerTo:getId() == 23721) then
+			if (not (item:getId() == ITEM_CRYSTAL_COIN or item:getId() == ITEM_PLATINUM_COIN or item:getId() == ITEM_GOLD_COIN)) then
+				self:sendTextMessage(MESSAGE_INFO_DESCR, "You can move only money to this container.")
+				return false
+			end
+		end
+	local potions = {268, 237, 238, 266, 236, 239, 7643, 23375, 7642, 23374}
+	local runes = {2260, 2261, 2262, 2263, 2264, 2265, 2266, 2267, 2268, 2269, 2270, 2271, 2272, 2273, 2274, 2275, 2276, 2277, 2278, 2279, 2280, 2281, 2282, 2283, 2284, 2285, 2286, 2287, 2288, 2289, 2290, 2291, 2292, 2293, 2294, 2295, 2296, 2297, 2298, 2299, 2300, 2301, 2302, 2303, 2304, 2305, 2306, 2307, 2308, 2309, 2310, 2311, 2312, 2313, 2314, 2315, 2316}
+		--Supply Stash
+		if (containerTo:getId() == ITEM_SUPPLY_STASH) then
+		local itemType = item:getType()
+			if (not (itemType:getType() == SLOTP_BACKPACK or isInArray(runes, item:getId()) or isInArray(potions, item:getId()))) then
+				self:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You can move only runes and potions in the Supply Stash.")
+				return false
+			end
+		end
+	end
+	
 	return true
 end
 

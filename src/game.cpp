@@ -1263,6 +1263,8 @@ ReturnValue Game::internalAddItem(Cylinder* toCylinder, Item* item, int32_t inde
 	ret = destCylinder->queryMaxCount(INDEX_WHEREEVER, *item, item->getItemCount(), maxQueryCount, flags);
 
 	if (ret != RETURNVALUE_NOERROR) {
+		//Fix problem, that the items do not drop on the ground when there is no space.
+		//if (ret != RETURNVALUE_NOERROR && toCylinder->getItem() && toCylinder->getItem()->getID() != ITEM_REWARD_CONTAINER) {
 		return ret;
 	}
 

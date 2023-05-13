@@ -53,6 +53,8 @@ Item* Item::CreateItem(const uint16_t type, uint16_t count /*= 0*/)
 	if (it.id != 0) {
 		if (it.isDepot()) {
 			newItem = new DepotLocker(type);
+		} else if (it.isRewardChest()) {
+			newItem = new RewardChest(type);
 		} else if (it.isContainer()) {
 			newItem = new Container(type);
 		} else if (it.isTeleport()) {
@@ -260,6 +262,10 @@ void Item::setID(uint16_t newid)
 	if (newDuration == 0 && !it.stopTime && it.decayTo < 0) {
 		removeAttribute(ITEM_ATTRIBUTE_DECAYSTATE);
 		removeAttribute(ITEM_ATTRIBUTE_DURATION);
+	}
+	
+	if (!isRewardCorpse()) {
+		removeAttribute(ITEM_ATTRIBUTE_CORPSEOWNER);
 	}
 
 	removeAttribute(ITEM_ATTRIBUTE_CORPSEOWNER);

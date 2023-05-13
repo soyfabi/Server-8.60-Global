@@ -742,6 +742,7 @@ class LuaScriptInterface
 		static int luaContainerAddItem(lua_State* L);
 		static int luaContainerAddItemEx(lua_State* L);
 		static int luaContainerGetCorpseOwner(lua_State* L);
+		static int luaContainerRegisterReward(lua_State* L);
 
 		// Teleport
 		static int luaTeleportCreate(lua_State* L);
@@ -849,6 +850,10 @@ class LuaScriptInterface
 		static int luaPlayerSetCapacity(lua_State* L);
 
 		static int luaPlayerGetFreeCapacity(lua_State* L);
+		
+		static int luaPlayerGetReward(lua_State* L);
+		static int luaPlayerRemoveReward(lua_State* L);
+		static int luaPlayerGetRewardList(lua_State* L);
 
 		static int luaPlayerGetDepotChest(lua_State* L);
 
@@ -1260,6 +1265,8 @@ class LuaScriptInterface
 		static int luaMonsterTypeIsPushable(lua_State* L);
 		static int luaMonsterTypeIsHealthHidden(lua_State* L);
 		static int luaMonsterTypeIsBoss(lua_State* L);
+		
+		static int luaMonsterTypeIsRewardBoss(lua_State* L);
 
 		static int luaMonsterTypeCanPushItems(lua_State* L);
 		static int luaMonsterTypeCanPushCreatures(lua_State* L);
