@@ -154,3 +154,8 @@ function getPlayerDatabaseInfo(name_or_guid)
 	result.free(query)
 	return info
 end
+
+-- Exercise Training --
+if onExerciseTraining == nil then
+	onExerciseTraining = {}
+end

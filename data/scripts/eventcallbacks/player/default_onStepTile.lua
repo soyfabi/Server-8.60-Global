@@ -1,6 +1,6 @@
 local event = Event()
 event.onStepTile = function(self, fromPosition, toPosition)
-	-- Exercise weapons
+	-- Exercise weapons trainings
 	local playerId = self:getId()
 	if onExerciseTraining[playerId] then
 		LeaveTraining(playerId)

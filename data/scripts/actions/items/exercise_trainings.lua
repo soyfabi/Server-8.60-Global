@@ -16,12 +16,12 @@ function exerciseTraining.onUse(player, item, fromPosition, target, toPosition, 
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Get closer to the dummy.")
 			return true
 		end
-		
-		--[[if not player:getTile():hasFlag(TILESTATE_PROTECTIONZONE) then
+
+		if not player:getTile():hasFlag(TILESTATE_PROTECTIONZONE) then
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You need to be in a protection zone.")
 			return true
-		end]]
-	
+		end
+
 		local playerHouse = player:getTile():getHouse()
 		local targetPos = target:getPosition()
 		local targetHouse = Tile(targetPos):getHouse()
@@ -53,8 +53,7 @@ function exerciseTraining.onUse(player, item, fromPosition, target, toPosition, 
 		if not onExerciseTraining[playerId].event then
 			onExerciseTraining[playerId].event = addEvent(ExerciseEvent, 0, playerId, targetPos, item.itemid, targetId)
 			onExerciseTraining[playerId].dummyPos = targetPos
-			--player:setTraining(true)
-			player:setStorageValue(Storage.ExerciseDummyExhaust, os.time() + 2)
+			player:setStorageValue(Storage.ExerciseDummyExhaust, os.time() + 30)
 		end
 		return true
 	end
@@ -69,3 +68,16 @@ for weaponId, weapon in pairs(ExerciseWeaponsTable) do
 end
 
 exerciseTraining:register()
+
+local exerciseTraining_Login = CreatureEvent("ExerciseTraining_Login")
+function exerciseTraining_Login.onLogin(player)
+
+	if onExerciseTraining[player:getId()] then -- onLogin & onLogout
+		stopEvent(onExerciseTraining[player:getId()].event)
+		onExerciseTraining[player:getId()] = nil
+	end
+
+	return true
+end
+
+exerciseTraining_Login:register()
