@@ -1,6 +1,5 @@
-local ec = EventCallback
-
-ec.onReportBug = function(self, message, position, category)
+local event = Event()
+event.onReportBug = function(self, message, position, category)
 	if self:getAccountType() == ACCOUNT_TYPE_NORMAL then
 		return false
 	end
@@ -28,4 +27,4 @@ ec.onReportBug = function(self, message, position, category)
 	return true
 end
 
-ec:register()
+event:register()
