@@ -209,8 +209,8 @@
 	<movevent event="AddItem" itemid="1425" function="onAddField" />
 
 	<!-- Fields -->
-	<movevent event="StepIn" itemid="1487" function="onStepInField" />
-	<movevent event="AddItem" itemid="1487" function="onAddField" />
+	<movevent event="StepIn" itemid="2118" function="onStepInField" />
+	<movevent event="AddItem" itemid="2118" function="onAddField" />
 	<movevent event="StepIn" itemid="1488" function="onStepInField" />
 	<movevent event="AddItem" itemid="1488" function="onAddField" />
 	<movevent event="StepIn" itemid="1489" function="onStepInField" />
