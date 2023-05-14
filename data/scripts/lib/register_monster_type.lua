@@ -115,6 +115,9 @@ registerMonsterType.flags = function(mtype, mask)
 		if mask.flags.canPushItems ~= nil then
 			mtype:canPushItems(mask.flags.canPushItems)
 		end
+		if mask.flags.rewardBoss ~= nil then
+			mtype:isRewardBoss(mask.flags.rewardBoss)
+		end
 		if mask.flags.canPushCreatures ~= nil then
 			mtype:canPushCreatures(mask.flags.canPushCreatures)
 		end
@@ -171,10 +174,15 @@ registerMonsterType.voices = function(mtype, mask)
 		end
 	end
 end
-registerMonsterType.summons = function(mtype, mask)
-	if type(mask.summons) == "table" then
-		for k, v in pairs(mask.summons) do
-			mtype:addSummon(v.name, v.interval, v.chance)
+registerMonsterType.summon = function(mtype, mask)
+	if mask.summon then
+		if mask.summon.maxSummons then
+			mtype:maxSummons(mask.summon.maxSummons)
+		end
+		if type(mask.summon.summons) == "table" then
+			for k, v in pairs(mask.summon.summons) do
+				mtype:addSummon(v.name, v.interval, v.chance, v.count)
+			end
 		end
 	end
 end
@@ -393,6 +401,9 @@ local function AbilityTableToSpell(ability)
 					end
 				end
 			end
+			if ability.speedChange then
+				spell:setConditionSpeedChange(ability.speedChange)
+			end
 			if ability.target then
 				spell:setNeedTarget(ability.target)
 			end
@@ -417,11 +428,8 @@ local function AbilityTableToSpell(ability)
 			if ability.shootEffect then
 				spell:setCombatShootEffect(ability.shootEffect)
 			end
-			if ability.name == "drunk" then
-				spell:setConditionType(CONDITION_DRUNK)
-				if ability.drunkenness then
-					spell:setConditionDrunkenness(ability.drunkenness)
-				end
+			if ability.drunkenness then
+				spell:setConditionDrunkenness(ability.drunkenness)
 			end
 		end
 		if ability.condition then
